@@ -1,6 +1,5 @@
 import openpyxl as xl
-from Framework.lib_util import ReadConfig
-import pandas as pd
+from Framework.lib_util import *
 
 def execution_driver():
     moduleControllerPath = ReadConfig.getValue('common path', 'module_controller')
@@ -21,6 +20,9 @@ def execution_driver():
             print("Description : " + description)
             # Running of current module
             current_module_Controller_path = ReadConfig.getValue('common path', 'module_path')
+            current_module_TestData_path = ReadConfig.getValue('common path', 'testdata_path')
+
+            current_module_TestData_path = current_module_TestData_path + moduleName + ".xlsx"
             current_module_Controller_path = current_module_Controller_path + moduleName + ".xlsx"
             current_module_Controller_wb = xl.load_workbook(current_module_Controller_path, data_only=True)
             current_module_sheet = current_module_Controller_wb["tbl_testcases"]
@@ -32,6 +34,7 @@ def execution_driver():
                 curr_testDataSet = row[5].value
                 ls_testData = []
                 if curr_Active.lower() == 'yes':
+                    dict_testcasedata = {}
                     print("Current Test Cases being executed : " + curr_testcaseName)
                     print("Total Test Data set selected : " + curr_testDataSet)
                     if "," in curr_testDataSet:
@@ -40,9 +43,11 @@ def execution_driver():
                     else:
                         ls_testData = curr_testDataSet
                         print("Current Test Data being executed: " + ls_testData)
-
+                        dict_testcasedata = loadDatafromExcel(current_module_TestData_path,curr_TcFileName,ls_testData)
 
 
 
             print("--------------End of execution for Module : " + moduleName + "---------------")
 
+def selectTestCases():
+    print("Starting selection")
