@@ -27,3 +27,14 @@ class Test_TC001_Module:
         self.driver.save_screenshot(".\\Reports\\" + "sc1.png")
 
         self.driver.close()
+
+    def test_lauchGoogle(self,setup):
+        self.logger.info("**************TEST CASE ID 2" + self.curr_TcFileName + "****************")
+        self.driver = setup
+        self.driver.get(self.base_url)
+        time.sleep(5)
+        self.lp = LoginPage(self.driver)
+        self.lp.loginIntoApp()
+        self.driver.save_screenshot(".\\Reports\\" + "sc2.png")
+
+        self.driver.close()
