@@ -35,6 +35,6 @@ class Test_TC001_Module:
         time.sleep(5)
         self.lp = LoginPage(self.driver)
         self.lp.loginIntoApp()
-        self.driver.save_screenshot(".\\Reports\\" + "sc2.png")
+        self.driver.save_screenshot(".\\Reports\\" + "sc3.png")
 
         self.driver.close()
