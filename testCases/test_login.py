@@ -1,4 +1,6 @@
 import time
+from builtins import str
+import requests
 from PageObjects.LoginPage import LoginPage
 from selenium import webdriver
 from Framework.lib_util import *
@@ -24,10 +26,14 @@ class Test_TC001_Module:
         time.sleep(5)
         self.lp = LoginPage(self.driver)
         self.lp.loginIntoApp()
+        assert self.driver.title == 'Google'
         self.driver.save_screenshot(".\\Reports\\" + "sc1.png")
-
         self.driver.close()
-
+        str_end_point = 'https://reqres.in/api/users/?q=id=507'
+        response = requests.get(str_end_point)
+        assert response.status_code == 200
+        pass
+        print(response)
     def test_lauchGoogle(self,setup):
         self.logger.info("**************TEST CASE ID 2" + self.curr_TcFileName + "****************")
         self.driver = setup
@@ -36,5 +42,4 @@ class Test_TC001_Module:
         self.lp = LoginPage(self.driver)
         self.lp.loginIntoApp()
         self.driver.save_screenshot(".\\Reports\\" + "sc3.png")
-
         self.driver.close()

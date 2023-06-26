@@ -2,7 +2,7 @@ from selenium import webdriver
 import pytest
 import pytest_html
 
-@pytest.fixture(scope='module')
+@pytest.fixture()
 def setup(browser):
     print('----------------------------------------SET UP-----------------------------------')
     if browser=='chrome':
@@ -13,9 +13,9 @@ def setup(browser):
         print("Launching firefox browser.........")
     return driver
 
-    yield
-    print('----------------------------------------TEAR DOWN-----------------------------------')
-    driver.quit()
+    # yield
+    # print('----------------------------------------TEAR DOWN-----------------------------------')
+    # driver.quit()
 
 def pytest_addoption(parser):    # This will get the value from CLI /hooks
     parser.addoption("--browser")
