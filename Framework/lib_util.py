@@ -43,15 +43,21 @@ class kyAPI:
     # '{"authenticated": true, ...'
     # >> > r.json()
     # {'authenticated': True, ...}
-    def getAPI(self,endpoint, authType,username,password,specificHeaderData,expectedResponseCode):
+    @staticmethod
+    def get_API(endpoint, authType,username,password,specificHeaderData,expectedResponseCode):
 
-        if(authType.lower() == 'basic'):
-            auth = HTTPBasicAuth('user', 'pass')
+        if (authType.lower() == 'basic'):
+            auth = HTTPBasicAuth(username, password)
 
-        if(specificHeaderData.len > 0):
-            print('update_some_thing')
+        # if (specificHeaderData.len > 0):
+        #     print('update_some_thing')
 
         response = requests.get(endpoint)
-        act_response_code = response.status_code()
-        act_json_data = response.json()
+        print(response)
+        act_response_code = response.status_code
+        assert int(act_response_code) == int(expectedResponseCode)
+        pass
+
+
+        return response
 
