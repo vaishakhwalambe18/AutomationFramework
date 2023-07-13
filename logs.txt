@@ -1,0 +1,2 @@
+2023-07-12 09:04:24.177821INFO kySearchString s1s2
+ subString: s1 True
