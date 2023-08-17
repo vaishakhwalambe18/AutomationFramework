@@ -1,5 +1,6 @@
+import shutil
 import subprocess
-
+import os
 import streamlit as st
 import pandas as pd
 # from Framework.lib_util import ReadConfig as rc
@@ -35,6 +36,8 @@ def delete_file(file_path):
     except Exception as e:
         print(f"An error occurred: {e}")
 
+################################################################# RUNNER STARTS HERE ##########################################################################################################
+
 st.title("Test Automation Framework")
 # module_path = rc.getValue('common path', 'module_controller')
 module_path = 'C:\AutomationFramework\Controller\ModuleController.xlsx'
@@ -55,7 +58,6 @@ with left_column:
         current_module_df = read_excel('C:\AutomationFramework\Controller\Controller_'+item+'.xlsx')
         for curr_index, curr_row in current_module_df.iterrows():
             if st.checkbox(curr_row['TCID']):
-                #temp
                 current_test_case_selected.append(curr_row['TCID'])
 
 with right_column:
@@ -66,8 +68,9 @@ with right_column:
 
             # Replace "python_script.py" with the actual name of your Python script
             original_script_path = "C://AutomationFramework//Framework//test_runner.bat"
-            script_path = original_script_path
 
+            script_path = create_duplicate (original_script_path)
+            st.write(script_path)
 
             for item in current_test_case_selected:
 
@@ -99,6 +102,7 @@ with right_column:
                 except subprocess.CalledProcessError as e:
                     st.error(f"Error running tests: {e.stderr}")
 
+                delete_file(script_path)
 
 
 
