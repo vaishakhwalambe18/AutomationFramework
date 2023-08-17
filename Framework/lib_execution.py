@@ -1,3 +1,41 @@
+import streamlit as st
+import pandas as pd
+# from Framework.lib_util import ReadConfig as rc
+
+# Read data from Excel file using pandas
+def read_excel(file_path):
+    data = pd.read_excel(file_path)
+    return data
+
+
+st.title("Test Automation Framework")
+# module_path = rc.getValue('common path', 'module_controller')
+module_path = 'C:\AutomationFramework\Controller\ModuleController.xlsx'
+df = read_excel(module_path)
+
+st.write("Select Modules to execute:")
+
+module_selected = []
+for index, row in df.iterrows():
+    if st.sidebar.checkbox(row['ModuleName']):
+        module_selected.append(row['ModuleName'])
+
+left_column, right_column = st.columns(2)
+
+with left_column:
+    for item in module_selected:
+        current_module_df = read_excel('C:\AutomationFramework\Controller\Controller_'+item+'.xlsx')
+        current_test_case_selected = []
+        for curr_index, curr_row in current_module_df.iterrows():
+            if st.checkbox(curr_row['TCID']):
+                current_test_case_selected.append(curr_row['TCID'])
+
+with right_column:
+    # Button to trigger the pytest test
+        if st.button("Run Test"):
+            st.write("Running the pytest test...")
+            st.write(current_test_case_selected)
+##########################################################################################################################################
 # import openpyxl as xl
 # from Framework.lib_util import *
 #
