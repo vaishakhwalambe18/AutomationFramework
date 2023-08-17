@@ -10,6 +10,31 @@ def read_excel(file_path):
     return data
 
 
+def create_duplicate(original_file_path):
+    # Get the directory and filename of the original file
+    directory, filename = os.path.split(original_file_path)
+
+    # Create a path for the duplicate file
+    duplicate_file_path = os.path.join(directory, "duplicate_" + filename)
+
+    try:
+        # Copy the original file to the duplicate file path
+        shutil.copy(original_file_path, duplicate_file_path)
+        print(f"Duplicate file created: {duplicate_file_path}")
+        return duplicate_file_path
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
+
+def delete_file(file_path):
+    try:
+        # Delete the file
+        os.remove(file_path)
+        print(f"File deleted: {file_path}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
 st.title("Test Automation Framework")
 # module_path = rc.getValue('common path', 'module_controller')
 module_path = 'C:\AutomationFramework\Controller\ModuleController.xlsx'
@@ -40,14 +65,39 @@ with right_column:
             st.write(current_test_case_selected)
 
             # Replace "python_script.py" with the actual name of your Python script
-            script_path = "python_script.py"
-            # Run the script using subprocess
-            try:
-                result = subprocess.run(["python", script_path], capture_output=True, text=True, check=True)
-                st.write("Script output:")
-                st.code(result.stdout)
-            except subprocess.CalledProcessError as e:
-                st.error(f"Error running the script: {e.stderr}")
+            original_script_path = "C://AutomationFramework//Framework//test_runner.bat"
+            script_path = original_script_path
+
+
+            for item in current_test_case_selected:
+
+                # Update bat file
+                with open(script_path, "rt") as bat_file:
+                    text = bat_file.readlines()
+
+                new_text = []
+                for line in text:
+                    if "[testcaseid]" in line:
+                        new_text.append(line.replace("[testcaseid]", item))
+                    else:
+                        new_text.append(line)
+
+                with open(script_path, "wt") as bat_file:
+                    for line in new_text:
+                        bat_file.write(line)
+
+                # Run the batch file using subprocess
+                try:
+                    subprocess.run(script_path, shell=True, capture_output=True, text=True, check=True)
+                    st.write("Tests executed successfully.")
+
+                    # Read and display the test output from the file
+                    with open("test_output.txt", "r") as file:
+                        test_output = file.read()
+                        st.write("Test output:")
+                        st.code(test_output)
+                except subprocess.CalledProcessError as e:
+                    st.error(f"Error running tests: {e.stderr}")
 
 
 
