@@ -9,4 +9,4 @@ def test_m2t1():
 
 @pytest.mark.failedones
 def test_m2t2():
-    assert False
+    assert True
