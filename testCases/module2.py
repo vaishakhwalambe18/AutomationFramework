@@ -7,5 +7,6 @@ def test_m2t1():
     assert a == b
 
 
+@pytest.mark.failedones
 def test_m2t2():
     assert False
