@@ -69,8 +69,8 @@ with right_column:
             # Replace "python_script.py" with the actual name of your Python script
             original_script_path = "C://AutomationFramework//Framework//test_runner.bat"
 
+
             script_path = create_duplicate (original_script_path)
-            st.write(script_path)
 
             for item in current_test_case_selected:
 
