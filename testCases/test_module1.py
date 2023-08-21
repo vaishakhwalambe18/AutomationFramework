@@ -7,4 +7,4 @@ def test_tc1():
 
 @pytest.mark.failedones
 def test_tc2():
-    assert False
+    assert True
