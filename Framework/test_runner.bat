@@ -1,0 +1,1 @@
+pytest -v -s -n=2 --html=.\Reports\report.html [testcaseid] --browser chrome
