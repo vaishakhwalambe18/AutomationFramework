@@ -1,7 +1,7 @@
 import time
 from builtins import str
 import requests
-from PageObjects.LoginPage import LoginPage
+from PageObjects.nop_login_page import LoginPage
 from selenium import webdriver
 from Framework.lib_util import *
 from Framework.lib_logger import LogGen
