@@ -3,6 +3,8 @@ import subprocess
 import os
 import streamlit as st
 import pandas as pd
+
+
 # from Framework.lib_util import ReadConfig as rc
 
 # Read data from Excel file using pandas
@@ -36,11 +38,12 @@ def delete_file(file_path):
     except Exception as e:
         print(f"An error occurred: {e}")
 
+
 ################################################################# RUNNER STARTS HERE ##########################################################################################################
 
 st.title("Test Automation Framework")
 
-sidebar_response = st.sidebar.selectbox('Pick your tool',('Web Page Scrapper', 'Execute Test Cases'))
+sidebar_response = st.sidebar.selectbox('Pick your tool', ('Web Page Scrapper', 'Execute Test Cases'))
 
 if sidebar_response == 'Execute Test Cases':
     # module_path = rc.getValue('common path', 'module_controller')

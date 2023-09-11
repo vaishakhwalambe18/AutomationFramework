@@ -2,29 +2,33 @@ from selenium import webdriver
 import pytest
 import pytest_html
 
+browser = "chrome"
+
+
 @pytest.fixture()
-def setup(browser):
-    print('----------------------------------------SET UP-----------------------------------')
-    if browser=='chrome':
-        driver=webdriver.Chrome()
-        print("Launching chrome browser.........")
-    elif browser=='firefox':
-        driver = webdriver.Firefox()
-        print("Launching firefox browser.........")
+def setup():
+    driver = webdriver.Chrome()
     return driver
+    print('----------------------------------------SET UP-----------------------------------')
+    # if browser == 'chrome':
+    #     driver = webdriver.Chrome()
+    #     print("Launching chrome browser.........")
+    # elif browser == 'firefox':
+    #     driver = webdriver.Firefox()
+    #     print("Launching firefox browser.........")
 
-    # yield
-    # print('----------------------------------------TEAR DOWN-----------------------------------')
-    # driver.quit()
+    yield
+    print('----------------------------------------TEAR DOWN-----------------------------------')
+    driver.close()
 
-def pytest_addoption(parser):    # This will get the value from CLI /hooks
+
+def pytest_addoption(parser):  # This will get the value from CLI /hooks
     parser.addoption("--browser")
+
 
 @pytest.fixture()
 def browser(request):  # This will return the Browser value to setup method
     return request.config.getoption("--browser")
-
-
 
 ########### pytest HTML Report ################
 

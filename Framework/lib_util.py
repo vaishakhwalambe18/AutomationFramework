@@ -30,6 +30,7 @@ class ReadExcel:
         # print(dictionary)
         return dictionary
 
+
 class kyAPI:
     # >> > import requests
     # >> > r = requests.get('https://httpbin.org/basic-auth/user/pass', auth=('user', 'pass'))
@@ -44,8 +45,7 @@ class kyAPI:
     # >> > r.json()
     # {'authenticated': True, ...}
     @staticmethod
-    def get_API(endpoint, authType,username,password,specificHeaderData,expectedResponseCode):
-
+    def get_API(endpoint, authType, username, password, specificHeaderData, expectedResponseCode):
         if (authType.lower() == 'basic'):
             auth = HTTPBasicAuth(username, password)
 
@@ -58,6 +58,4 @@ class kyAPI:
         assert int(act_response_code) == int(expectedResponseCode)
         pass
 
-
         return response
-

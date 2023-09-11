@@ -19,7 +19,7 @@ class Test_TC001_Module:
 
     logger = LogGen.loggen()
 
-    def descope_test_loginIntoApp(self,setup):
+    def descope_test_loginIntoApp(self, setup):
         self.logger.info("**************TEST CASE ID " + self.curr_TcFileName + "****************")
         self.driver = setup
         self.driver.get(self.base_url)
@@ -34,7 +34,8 @@ class Test_TC001_Module:
         assert response.status_code == 200
         pass
         print(response)
-    def descope_test_lauchGoogle(self,setup):
+
+    def descope_test_lauchGoogle(self, setup):
         self.logger.info("**************TEST CASE ID 2" + self.curr_TcFileName + "****************")
         self.driver = setup
         self.driver.get(self.base_url)

@@ -1,5 +1,5 @@
 import time
-
+from Framework.lib_logger import LogGen as lg
 from selenium.webdriver.common.by import By
 from Framework.lib_util import ReadConfig
 from selenium import webdriver
@@ -24,3 +24,7 @@ class Nop_loginPage:
         self.driver.find_element(By.XPATH, self.button_login).click()
         time.sleep(3)
         assert self.driver.title == 'Dashboard / nopCommerce administration'
+        lg.save_screenshot(self.driver)
+
+    def kyPerformWebOperationWS():
+        print()
