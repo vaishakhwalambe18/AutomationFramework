@@ -1,22 +1,20 @@
+
 from selenium import webdriver
 import pytest
 import pytest_html
 
-browser = "chrome"
-
 
 @pytest.fixture()
-def setup():
-    driver = webdriver.Chrome()
-    return driver
+def setup(browser):
+    driver = ""
     print('----------------------------------------SET UP-----------------------------------')
-    # if browser == 'chrome':
-    #     driver = webdriver.Chrome()
-    #     print("Launching chrome browser.........")
-    # elif browser == 'firefox':
-    #     driver = webdriver.Firefox()
-    #     print("Launching firefox browser.........")
-
+    if browser == 'chrome':
+        driver = webdriver.Chrome()
+        print("Launching chrome browser.........")
+    elif browser == 'firefox':
+        driver = webdriver.Firefox()
+        print("Launching firefox browser.........")
+    return driver
     # yield
     # print('----------------------------------------TEAR DOWN-----------------------------------')
     # driver.close()

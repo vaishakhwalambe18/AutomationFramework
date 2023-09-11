@@ -17,7 +17,7 @@ class Test_TC001_Module:
     dict_testcasedata = ReadExcel.loadDatafromExcel(current_module_TestData_path, curr_TcFileName, "ENV")
     current_module_TestData_path = ReadConfig.getValue('common path', 'testdata_path') + ModuleName + ".xlsx"
 
-    logger = LogGen.loggen()
+    logger = loggen()
 
     def descope_test_loginIntoApp(self, setup):
         self.logger.info("**************TEST CASE ID " + self.curr_TcFileName + "****************")
