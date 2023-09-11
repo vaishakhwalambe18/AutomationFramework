@@ -14,12 +14,12 @@ class Nop_loginPage:
     def __init__(self, driver):
         self.driver = driver
 
-    def loginIntoApp(self):
+    def loginIntoApp(self, username, password):
         self.driver.find_element(By.ID, self.textbox_username).clear()
-        self.driver.find_element(By.ID, self.textbox_username).send_keys('admin@yourstore.com')
+        self.driver.find_element(By.ID, self.textbox_username).send_keys(username)
 
         self.driver.find_element(By.ID, self.textbox_password).clear()
-        self.driver.find_element(By.ID, self.textbox_password).send_keys('admin')
+        self.driver.find_element(By.ID, self.textbox_password).send_keys(password)
         time.sleep(3)
         self.driver.find_element(By.XPATH, self.button_login).click()
         time.sleep(3)
@@ -27,4 +27,4 @@ class Nop_loginPage:
         lg.save_screenshot(self.driver)
 
     def kyPerformWebOperationWS():
-        print()
+        print("test")

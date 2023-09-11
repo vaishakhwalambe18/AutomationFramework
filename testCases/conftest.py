@@ -17,9 +17,9 @@ def setup():
     #     driver = webdriver.Firefox()
     #     print("Launching firefox browser.........")
 
-    yield
-    print('----------------------------------------TEAR DOWN-----------------------------------')
-    driver.close()
+    # yield
+    # print('----------------------------------------TEAR DOWN-----------------------------------')
+    # driver.close()
 
 
 def pytest_addoption(parser):  # This will get the value from CLI /hooks
