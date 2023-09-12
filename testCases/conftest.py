@@ -1,9 +1,27 @@
 from selenium import webdriver
 import pytest
 import pytest_html
+from Framework.lib_logger import ReportFolder
 
 
-@pytest.fixture()
+# '====================================================================================================================================================
+# 'Function Description   : Fixture - Class Level
+# 'Input Parameters:
+# 'Return Value:
+# 'Author: Vaishakh
+# 'UPDATED BY:
+# 'Date Created :
+# '====================================================================================================================================================
+
+@pytest.fixture(scope='session')
+def setup_class():
+    rp = ReportFolder()
+    current_exec_folder = rp.subCreateExecutionResultFolder()
+
+    return current_exec_folder
+
+
+@pytest.fixture(scope='module')
 def setup(browser):
     driver = ""
     print('----------------------------------------SET UP-----------------------------------')

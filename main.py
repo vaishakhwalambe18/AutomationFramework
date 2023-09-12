@@ -12,5 +12,5 @@
 
 from Framework.lib_logger import ReportFolder
 
-rp  = ReportFolder()
+rp = ReportFolder()
 rp.subCreateExecutionResultFolder()
