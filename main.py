@@ -8,3 +8,9 @@
 # # print(response.status_code)
 # resposne = kyAPI.get_API( str_end_point, '', '', '', '', '200')
 # print(resposne.json())
+
+
+from Framework.lib_logger import ReportFolder
+
+rp  = ReportFolder()
+rp.subCreateExecutionResultFolder()
