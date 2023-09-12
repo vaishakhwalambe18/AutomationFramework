@@ -1,11 +1,9 @@
 import time
-from builtins import str
+
 import requests
-from PageObjects.nop_login_page import LoginPage
-from selenium import webdriver
+
 from Framework.lib_util import *
-from Framework.lib_logger import LogGen
-import pytest
+from PageObjects.nop_login_page import LoginPage
 
 
 class Test_TC001_Module:

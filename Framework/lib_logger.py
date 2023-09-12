@@ -3,7 +3,6 @@ import logging
 import os
 import time
 
-
 from Framework.lib_util import *
 
 
@@ -45,6 +44,6 @@ class ReportFolder:
         gmt = time.gmtime()
         # ts stores timestamp
         ts = str(calendar.timegm(gmt))
-        curr_execution_folder = self.root_report_path+'//Execution_'+ts
+        curr_execution_folder = self.root_report_path + 'Execution_' + ts
         os.mkdir(curr_execution_folder)
         return curr_execution_folder

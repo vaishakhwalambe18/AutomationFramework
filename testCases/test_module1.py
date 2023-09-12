@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_tc1():
     assert True
 

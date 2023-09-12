@@ -1,8 +1,8 @@
 import time
-from Framework.lib_logger import LogGen as lg
+
 from selenium.webdriver.common.by import By
-from Framework.lib_util import ReadConfig
-from selenium import webdriver
+from Framework.lib_web import webOperations
+from Framework.lib_logger import LogGen as lg
 
 
 class Nop_loginPage:
@@ -14,7 +14,16 @@ class Nop_loginPage:
     def __init__(self, driver):
         self.driver = driver
 
+    def setUserName(self, driver):
+        webOp = webOperations()
+        webOp.kyPerformWebOperationWS(self.driver, "UserName", "id", self.textbox_username, "sendkeys", "TEST")
+
     def loginIntoApp(self, username, password):
+        self.setUserName()
+        # webOp = webOperations()
+        #
+        # webOp.kyPerformWebOperationWS(self.driver, "UserName", "id", self.textbox_username, "sendkeys", "TEST")
+
         self.driver.find_element(By.ID, self.textbox_username).clear()
         self.driver.find_element(By.ID, self.textbox_username).send_keys(username)
 
@@ -25,6 +34,3 @@ class Nop_loginPage:
         time.sleep(3)
         assert self.driver.title == 'Dashboard / nopCommerce administration'
         lg.save_screenshot(self.driver)
-
-    def kyPerformWebOperationWS():
-        print("test")

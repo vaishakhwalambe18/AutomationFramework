@@ -1,8 +1,11 @@
+import pytest
+
+from Framework.lib_logger import LogGen
 from Framework.lib_util import ReadConfig, ReadExcel
 from PageObjects.nop_login_page import Nop_loginPage
-from Framework.lib_logger import LogGen
 
 
+@pytest.mark.usefixtures('setup')
 class Test_001_NopLogin:
     # Declarations
     curr_TcFileName = "Test_001_NopLogin"
@@ -16,7 +19,7 @@ class Test_001_NopLogin:
     browser = str(dict_testcasedata.get('Browser'))
 
     def test_homepageTitle(self, setup):
-        self.driver = setup('chrome')
+        self.driver = setup
         self.lg.info(f"******************** {self.curr_TcFileName} *******************")
 
         self.driver.get(self.dict_testcasedata.get('URL'))

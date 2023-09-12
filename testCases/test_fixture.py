@@ -1,7 +1,6 @@
+import pytest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-import pytest
-import ChromeDriver
 
 
 @pytest.fixture(scope='class')

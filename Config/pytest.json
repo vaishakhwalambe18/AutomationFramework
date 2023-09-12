@@ -2,7 +2,7 @@
   {
     "command_for_all_testcases_of_module": "pytest test_mod.py",
     "command_for_specific_file_with_browser_htmlreport": "pytest -v -s -n=2 --html=.\Reports\report.html ./testCases/module1.py --browser chrome",
-    "command_for_specific_testcase": "py.test -k [testcaseid] -v",
+    "command_for_specific_testcase": "pytest -k [testcaseid] -v",
     "command_for_specificClass_w_Keyword": "pytest -k [MyClass and not method]"
   }
 ]
