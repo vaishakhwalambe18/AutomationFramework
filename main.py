@@ -9,8 +9,7 @@
 # resposne = kyAPI.get_API( str_end_point, '', '', '', '', '200')
 # print(resposne.json())
 
-
-from Framework.lib_logger import ReportFolder
-
-rp = ReportFolder()
-rp.subCreateExecutionResultFolder()
+a= "a"
+b= 7
+str_test = f"{a}  {b}"
+print(str_test)

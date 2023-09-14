@@ -14,23 +14,13 @@ class Nop_loginPage:
     def __init__(self, driver):
         self.driver = driver
 
-    def setUserName(self, driver):
-        webOp = webOperations()
-        webOp.kyPerformWebOperationWS(self.driver, "UserName", "id", self.textbox_username, "sendkeys", "TEST")
-
     def loginIntoApp(self, username, password):
-        self.setUserName()
-        # webOp = webOperations()
-        #
-        # webOp.kyPerformWebOperationWS(self.driver, "UserName", "id", self.textbox_username, "sendkeys", "TEST")
-
-        self.driver.find_element(By.ID, self.textbox_username).clear()
-        self.driver.find_element(By.ID, self.textbox_username).send_keys(username)
-
-        self.driver.find_element(By.ID, self.textbox_password).clear()
-        self.driver.find_element(By.ID, self.textbox_password).send_keys(password)
-        time.sleep(3)
-        self.driver.find_element(By.XPATH, self.button_login).click()
+        # Declaration
+        webOp = webOperations()
+        # Actions
+        webOp.kyPerformWebOperationWS("UserName", self.driver, "id", self.textbox_username, "sendkeys", username)
+        webOp.kyPerformWebOperationWS("Password", self.driver, "id", self.textbox_password, "sendkeys", password)
+        webOp.kyPerformWebOperationWS("Login button", self.driver, "xpath", self.button_login, "click", "")
         time.sleep(3)
         assert self.driver.title == 'Dashboard / nopCommerce administration'
         lg.save_screenshot(self.driver)
