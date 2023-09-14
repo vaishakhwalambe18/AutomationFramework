@@ -3,6 +3,7 @@ import time
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from Framework.lib_logger import LogGen
+
 lg = LogGen.loggen()
 
 
@@ -95,6 +96,7 @@ class webOperations:
             self.lg.info(str_log)
         except Exception as e:
             self.lg.error(f"Error in kyPerformWebOperationWS: {str(e)}")
+
     # '====================================================================================================================================================
     # 'Function Description   : Navigate to required URL
     # 'Input Parameters:
