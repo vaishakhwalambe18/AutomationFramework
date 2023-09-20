@@ -3,6 +3,7 @@ from selenium.common import NoSuchElementException
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from Framework.lib_logger import LogGen
+
 lg = LogGen.loggen()
 
 
@@ -72,6 +73,38 @@ class webOperations:
             self.lg.error(e)
 
     # '====================================================================================================================================================
+    # 'Function Description   : Wait untilisDisplayed on element
+    # 'Input Parameters:
+    # 'Return Value:
+    # 'Author: Vaishakh
+    # 'UPDATED BY:
+    # 'Date Created :
+    # '====================================================================================================================================================
+    def kyWaitUntilElementIsSelected(self, objectNm, driver, findBy, obj):
+        try:
+            counter = 120
+
+            for _ in range(counter):
+                try:
+                    element = self.kyGetObject(driver, findBy, obj)
+                    if element.is_selected():
+                        break
+                except NoSuchElementException:
+                    pass
+
+                time.sleep(1)
+
+            else:
+                # This code block will execute if the loop completes without breaking.
+                self.lg.info(f"Element '{objectNm}' with Locator '{obj}' was not selected within the time limit.")
+                return  # You may choose to raise an exception here or handle it as needed.
+
+            str_log = f"Element : {objectNm} || Locator: {obj}  || is_selected : True"
+            self.lg.info(str_log)
+        except Exception as e:
+            self.lg.error(e)
+
+    # '====================================================================================================================================================
     # 'Function Description   : Wait is enabled on element
     # 'Input Parameters:
     # 'Return Value:
@@ -102,6 +135,7 @@ class webOperations:
             self.lg.info(str_log)
         except Exception as e:
             self.lg.error(e)
+
     # '====================================================================================================================================================
     # 'Function Description   : Action on element
     # 'Input Parameters:
