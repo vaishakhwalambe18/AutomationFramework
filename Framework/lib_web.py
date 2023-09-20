@@ -1,9 +1,8 @@
 import time
-
+from selenium.common import NoSuchElementException
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from Framework.lib_logger import LogGen
-
 lg = LogGen.loggen()
 
 
@@ -40,6 +39,69 @@ class webOperations:
         except Exception as e:
             self.lg.error(f"Error in kyGetObject: {str(e)}")
 
+    # '====================================================================================================================================================
+    # 'Function Description   : Wait untilisDisplayed on element
+    # 'Input Parameters:
+    # 'Return Value:
+    # 'Author: Vaishakh
+    # 'UPDATED BY:
+    # 'Date Created :
+    # '====================================================================================================================================================
+    def kyWaitUntilElementIsDisplayed(self, objectNm, driver, findBy, obj):
+        try:
+            counter = 120
+
+            for _ in range(counter):
+                try:
+                    element = self.kyGetObject(driver, findBy, obj)
+                    if element.is_displayed():
+                        break
+                except NoSuchElementException:
+                    pass
+
+                time.sleep(1)
+
+            else:
+                # This code block will execute if the loop completes without breaking.
+                self.lg.info(f"Element '{objectNm}' with Locator '{obj}' was not displayed within the time limit.")
+                return  # You may choose to raise an exception here or handle it as needed.
+
+            str_log = f"Element : {objectNm} || Locator: {obj}  || is_Displayed : True"
+            self.lg.info(str_log)
+        except Exception as e:
+            self.lg.error(e)
+
+    # '====================================================================================================================================================
+    # 'Function Description   : Wait is enabled on element
+    # 'Input Parameters:
+    # 'Return Value:
+    # 'Author: Vaishakh
+    # 'UPDATED BY:
+    # 'Date Created :
+    # '====================================================================================================================================================
+    def kyWaitUntilElementIsEnabled(self, objectNm, driver, findBy, obj):
+        try:
+            counter = 120
+
+            for _ in range(counter):
+                try:
+                    element = self.kyGetObject(driver, findBy, obj)
+                    if element.is_enabled():
+                        break
+                except NoSuchElementException:
+                    pass
+
+                time.sleep(1)
+
+            else:
+                # This code block will execute if the loop completes without breaking.
+                self.lg.info(f"Element '{objectNm}' with Locator '{obj}' was not enabled within the time limit.")
+                return  # You may choose to raise an exception here or handle it as needed.
+
+            str_log = f"Element : {objectNm} || Locator: {obj}  || is_Enabled : True"
+            self.lg.info(str_log)
+        except Exception as e:
+            self.lg.error(e)
     # '====================================================================================================================================================
     # 'Function Description   : Action on element
     # 'Input Parameters:
