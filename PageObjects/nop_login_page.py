@@ -1,6 +1,3 @@
-import time
-
-from selenium.webdriver.common.by import By
 from Framework.lib_web import webOperations
 from Framework.lib_logger import LogGen as lg
 
@@ -21,6 +18,6 @@ class Nop_loginPage:
         webOp.kyPerformWebOperationWS("UserName", self.driver, "id", self.textbox_username, "sendkeys", username)
         webOp.kyPerformWebOperationWS("Password", self.driver, "id", self.textbox_password, "sendkeys", password)
         webOp.kyPerformWebOperationWS("Login button", self.driver, "xpath", self.button_login, "click", "")
-        time.sleep(3)
+        webOp.kyWaitUntilElementIsDisplayed("Welcome label", self.driver, "xpath", self.label_welcome)
         assert self.driver.title == 'Dashboard / nopCommerce administration'
         lg.save_screenshot(self.driver)

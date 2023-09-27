@@ -1,8 +1,11 @@
 import time
-from selenium.common import NoSuchElementException
+from selenium.common import NoSuchElementException, ElementNotVisibleException, ElementNotSelectableException
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from Framework.lib_logger import LogGen
+from Framework.lib_util import ReadConfig
 
 lg = LogGen.loggen()
 
@@ -210,3 +213,37 @@ class webOperations:
             self.lg.info(str_log)
         except Exception as e:
             self.lg.error(f"Error while navigating to URL: {url} - {str(e)}")
+
+    # '====================================================================================================================================================
+    # 'Function Description   : Wait for element explicitly
+    # 'Input Parameters:
+    # 'Return Value:
+    # 'Author: Vaishakh
+    # 'UPDATED BY:
+    # 'Date Created :
+    # '====================================================================================================================================================
+    @staticmethod
+    def kyWaitUntil_explicit(objectNm, driver, findBy, obj):
+
+        locators = {
+            "id": By.ID,
+            "xpath": By.XPATH,
+            "link_text": By.LINK_TEXT,
+            "partial_link_text": By.PARTIAL_LINK_TEXT,
+            "name": By.NAME,
+            "tag_name": By.TAG_NAME,
+            "class_name": By.CLASS_NAME,
+            "css_selector": By.CSS_SELECTOR
+            # Add more locators here if needed
+        }
+
+        webdriver_wait = WebDriverWait(driver, int(ReadConfig().getValue('common_variable', 'implicit_wait')),
+                                       poll_frequency=5, ignored_exceptions=[NoSuchElementException,
+                                                                             ElementNotVisibleException,
+                                                                             ElementNotSelectableException, Exception])
+        if findBy.lower() in locators:
+            element_expected = webdriver_wait.until(EC.presence_of_element_located(locators[findBy.lower()], obj))
+            if element_expected:
+                return element_expected
+            else:
+                return False

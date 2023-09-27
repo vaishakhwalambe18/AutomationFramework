@@ -1,9 +1,11 @@
 import shutil
 import pytest
 from selenium import webdriver
+from selenium.common import WebDriverException
 from Framework.lib_logger import ReportFolder
 from Framework.lib_util import ReadConfig
 import allure
+
 
 # '====================================================================================================================================================
 # 'Function Description   : Fixture - Session Level
@@ -40,22 +42,31 @@ def setup_class():
 # 'UPDATED BY:
 # 'Date Created :
 # '====================================================================================================================================================
-
 @pytest.fixture
-def setup(setup_class):
-    driver = webdriver.Chrome()
-    return driver
-    # print('----------------------------------------SET UP-----------------------------------')
-    # if browser == 'chrome':
-    #     driver = webdriver.Chrome()
-    #     print("Launching chrome browser.........")
-    # elif browser == 'firefox':
-    #     driver = webdriver.Firefox()
-    #     print("Launching firefox browser.........")
-    # yield
-    # print('----------------------------------------TEAR DOWN-----------------------------------')
-    # driver.close()
+def setup(setup_class, browser):
+    supported_browsers = {
+        'chrome': webdriver.Chrome,
+        'firefox': webdriver.Firefox,
+        'edge': webdriver.Edge,
+        'safari': webdriver.Safari,
+        'opera': webdriver.Opera,
+        # You can add more browsers as needed
+    }
 
+    if browser in supported_browsers:
+        try:
+            driver = supported_browsers[browser]()
+        except WebDriverException as e:
+            pytest.fail(f"Failed to create WebDriver for '{browser}': {str(e)}")
+    else:
+        pytest.fail(f"Unsupported browser: '{browser}'")
+
+    implicit_wait_time = int(ReadConfig().getValue('common_variable', 'implicit_wait'))
+    driver.implicitly_wait(implicit_wait_time)
+
+    yield driver
+
+    driver.quit()
 
 # @pytest.fixture()
 # def pytest_adoption(parser):  # This will get the value from CLI /hooks
