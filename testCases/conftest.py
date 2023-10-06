@@ -70,7 +70,7 @@ def setup(setup_class, browser):
 
 # @pytest.fixture()
 # def pytest_adoption(parser):  # This will get the value from CLI /hooks
-#     parser.addoption("--browser")
+#     parser.adoption("--browser")
 
 
 # def browser(request):  # This will return the Browser value to setup method

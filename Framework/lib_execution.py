@@ -44,11 +44,11 @@ def delete_file(file_path):
 
 st.title("Test Automation Framework")
 
-sidebar_response = st.sidebar.selectbox('Pick your tool', ('Web Page Scrapper', 'Execute Test Cases'))
+sidebar_response = st.sidebar.selectbox('Pick your tool', ('Ask File', 'Execute Test Cases'))
 
 if sidebar_response == 'Execute Test Cases':
     # module_path = rc.getValue('common path', 'module_controller')
-    module_path = 'C:\AutomationFramework\Controller\ModuleController.xlsx'
+    module_path = "C:\\AutomationFramework\\Controller\\ModuleController.xlsx"
     df = read_excel(module_path)
     st.write("Select Modules to execute:")
 
