@@ -1,10 +1,11 @@
 import shutil
+
 import pytest
 from selenium import webdriver
 from selenium.common import WebDriverException
+
 from Framework.lib_logger import ReportFolder
 from Framework.lib_util import ReadConfig
-import allure
 
 
 # '====================================================================================================================================================

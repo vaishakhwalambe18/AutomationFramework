@@ -1,7 +1,8 @@
-import streamlit as st
-import pandas as pd
 import multiprocessing
 import time
+
+import pandas as pd
+import streamlit as st
 
 
 # Function to simulate running a test case

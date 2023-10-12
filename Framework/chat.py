@@ -1,9 +1,9 @@
-import streamlit as st
 import PyPDF2
 import openai
+import streamlit as st
 
 # Set your OpenAI API key here
-openai.api_key = "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"
+openai.api_key = "XXX"
 
 # Streamlit app header
 st.title("Ask PDF")

@@ -9,7 +9,7 @@
 # resposne = kyAPI.get_API( str_end_point, '', '', '', '', '200')
 # print(resposne.json())
 
-a= "a"
-b= 7
+a = "a"
+b = 7
 str_test = f"{a}  {b}"
 print(str_test)

@@ -7,22 +7,10 @@ driver = webdriver.Chrome()
 
 driver.get("https://wwww.google.com")
 
-
 time.sleep(3)
 elements = driver.find_elements(By.XPATH, "//*")
 
 print(len(elements))
-
-
-
-
-
-
-
-
-
-
-
 
 ##########################################################################################################################################
 # import openpyxl as xl

@@ -1,6 +1,5 @@
-import streamlit as st
 import pandas as pd
-import subprocess
+import streamlit as st
 
 
 # Function to run pytest in parallel

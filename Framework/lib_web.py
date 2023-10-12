@@ -1,9 +1,11 @@
 import time
+
 from selenium.common import NoSuchElementException, ElementNotVisibleException, ElementNotSelectableException
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+
 from Framework.lib_logger import LogGen
 from Framework.lib_util import ReadConfig
 
